@@ -11,6 +11,7 @@ namespace Components
 
         private GameObject _currentTile;
         private GameObject _previousTile;
+        private bool _previousTileExist;
 
         private Renderer _currentTileRenderer;
         private Renderer _previousTileRenderer;
@@ -25,14 +26,13 @@ namespace Components
             SpawnTile();
         }
 
-
         void Update()
         {
             if (_currentTileRenderer.bounds.max.x - player.position.x < 50)
             {
                 SpawnTile();
             }
-            else if (player.position.x - _previousTileRenderer.bounds.max.x > 50)
+            else if (_previousTileExist && player.position.x - _previousTileRenderer.bounds.max.x > 50)
             {
                 DeleteTile();
             }
@@ -41,9 +41,10 @@ namespace Components
         private void SpawnTile()
         {
             _previousTile = _currentTile;
+            _previousTileExist = true;
             _currentTile = Instantiate(sprite, transform.right * (_currentTileRenderer.bounds.center.x + _tileLenght),
                 transform.rotation);
-
+            
             _previousTileRenderer = _previousTile.GetComponent<Renderer>();
             _currentTileRenderer = _currentTile.GetComponent<Renderer>();
         }
@@ -51,6 +52,7 @@ namespace Components
         private void DeleteTile()
         {
             Destroy(_previousTile);
+            _previousTileExist = false;
         }
     }
 }
