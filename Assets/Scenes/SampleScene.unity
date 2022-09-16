@@ -531,14 +531,6 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: dcd84db9-79a5-4489-b13a-9afc36f8e9d6
-    m_ActionName: Player/Look[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4f276cec-781b-4bc4-8f4e-e8426706f661
-    m_ActionName: Player/Fire[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 9f0c7ebc-ea23-4603-8906-970e1440c1c3
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -577,6 +569,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c3ba5450-7e75-4f55-a24a-4d858d1723a9
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 998087027}
+        m_TargetAssemblyTypeName: Components.InputReader, Assembly-CSharp
+        m_MethodName: OnTouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f39c8c4f-2377-47e7-ac3d-885ad7fd45a4
+    m_ActionName: Player/TouchInput
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
