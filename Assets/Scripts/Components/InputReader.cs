@@ -10,7 +10,13 @@ namespace Components
     {
         [SerializeField] private Player player;
 
-        void Start()
+        private void OnDisable()
+        {
+            EnhancedTouchSupport.Disable();
+            TouchSimulation.Disable();
+        }
+
+        private void OnEnable()
         {
             EnhancedTouchSupport.Enable();
             TouchSimulation.Enable();
@@ -18,12 +24,11 @@ namespace Components
 
         public void OnMovement(InputAction.CallbackContext context)
         {
-            Debug.Log(Touchscreen.current.touches.Count);
             var direction = context.ReadValue<Vector2>();
             player.SetDirection(direction);
         }
 
-        private void Update()
+        void Update()
         {
         #if UNITY_ANDROID
             player.SetDirection(Touch.activeFingers.Count > 0 ? Vector2.up : Vector2.down);

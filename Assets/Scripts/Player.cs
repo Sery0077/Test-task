@@ -1,5 +1,6 @@
 ﻿using Components;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Chars
 {
@@ -9,10 +10,13 @@ namespace Chars
         [SerializeField] private float ySpeed;
         [SerializeField] private LayerCheck waterCheck;
         [SerializeField] private float airGravityScale;
+        [SerializeField] private float secondsToDieInAir;
 
         private bool _inWater;
         private Vector2 _direction;
         private Rigidbody2D _rigidbody;
+
+        private float _secondsInAir = 0;
 
         private void Awake()
         {
@@ -28,21 +32,27 @@ namespace Chars
         {
             _inWater = waterCheck.IsTouching();
             _rigidbody.gravityScale = _inWater ? 0 : airGravityScale;
+
+            _secondsInAir = _inWater ? 0 : _secondsInAir + Time.deltaTime;
+
+            if (_secondsInAir > secondsToDieInAir)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
         }
 
         private void FixedUpdate()
         {
-            var yVelocity = _rigidbody.velocity.y;
+            var yVelocity = CalculateYVelocity(_rigidbody.velocity.y);
+            var xVelocity = CalculateXVelocity(_rigidbody.velocity.x);
 
-            if (_direction.y != 0 && _inWater)
-            {
-                yVelocity = CalculateYVelocity();
-            }
-            else if (_inWater)
-            {
-                yVelocity = 0.5f * _rigidbody.velocity.y;
-            }
+            _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
 
+            RotateSprite(yVelocity);
+        }
+
+        private void RotateSprite(float yVelocity)
+        {
             var rotateAngle = yVelocity switch
             {
                 > 45 => 45,
@@ -51,14 +61,22 @@ namespace Chars
             };
 
             transform.rotation = Quaternion.AngleAxis(rotateAngle, Vector3.forward);
-
-            _rigidbody.velocity = new Vector2(xSpeed, yVelocity);
         }
 
-        private float CalculateYVelocity()
+        private float CalculateYVelocity(float currentYVelocity)
         {
-            return ySpeed * _direction.y;
-            ;
+            if (!_inWater) return currentYVelocity;
+            if (_direction.y != 0)
+            {
+                return ySpeed * _direction.y;
+            }
+
+            return 0.5f * _rigidbody.velocity.y;
+        }
+
+        private float CalculateXVelocity(float currentXVelocity)
+        {
+            return _inWater ? xSpeed : currentXVelocity;
         }
     }
 }

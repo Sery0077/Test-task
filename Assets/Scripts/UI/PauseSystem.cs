@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UI
 {
@@ -19,6 +21,12 @@ namespace UI
             Time.timeScale = 1;
             pauseMenu.SetActive(false);
             pauseButton.SetActive(true);
+        }
+
+        public void Restart()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Time.timeScale = 1;
         }
     }
 }

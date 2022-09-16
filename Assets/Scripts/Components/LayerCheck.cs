@@ -13,7 +13,6 @@ namespace Components
         {
             return _isTouchingLayer;
         }
-
         void Awake()
         {
             _collider = GetComponent<Collider2D>();
