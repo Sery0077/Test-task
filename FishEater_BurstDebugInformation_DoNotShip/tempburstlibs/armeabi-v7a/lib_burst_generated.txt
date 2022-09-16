@@ -116,6 +116,7 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_TIMELINE
 --compilation-defines=ENABLE_INPUT_SYSTEM
 --compilation-defines=ENABLE_LEGACY_INPUT_MANAGER
+--compilation-defines=VISUAL_SCRIPTING_ENABLED
 --compilation-defines=CSHARP_7_OR_LATER
 --compilation-defines=CSHARP_7_3_OR_NEWER
 --compilation-defines=PACKAGE_PHYSICS
@@ -188,6 +189,7 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Sergey\UnityProjects\Test task\Temp\StagingArea\Data\Managed\Unity.Services.Core.Configuration.dll
 --root-assembly=C:\Users\Sergey\UnityProjects\Test task\Temp\StagingArea\Data\Managed\FbxBuildTestAssets.dll
 --root-assembly=C:\Users\Sergey\UnityProjects\Test task\Temp\StagingArea\Data\Managed\Unity.Subsystem.Registration.dll
+--root-assembly=C:\Users\Sergey\UnityProjects\Test task\Temp\StagingArea\Data\Managed\Unity.AdaptivePerformance.Samsung.Android.dll
 --assembly-folder=C:\Users\Sergey\UnityProjects\Test task\Temp\StagingArea\Data\Managed\
 --pdb-search-paths=Temp/ManagedSymbols/
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10

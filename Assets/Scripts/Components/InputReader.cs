@@ -25,14 +25,9 @@ namespace Components
 
         private void Update()
         {
-            if (Touch.activeFingers.Count > 0)
-            {
-                player.SetDirection(Vector2.up);
-            }
-            else
-            {
-                player.SetDirection(Vector2.down);
-            }
+        #if UNITY_ANDROID
+            player.SetDirection(Touch.activeFingers.Count > 0 ? Vector2.up : Vector2.down);
+        #endif
         }
     }
 }
